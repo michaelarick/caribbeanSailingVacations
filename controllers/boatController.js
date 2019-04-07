@@ -19,8 +19,11 @@ module.exports = {
     const boat = {
       _id: req.body._id,
       boatName: req.body.boatName,
-      img: req.body.img,
-      description: req.body.description
+      imgs: req.body.imgs,
+      year: req.body.year,
+      maxPassengers: req.body.maxPassengers,
+      manufacture: req.body.manufacture,
+      crewBio: req.body.crewBio
     };
     db.Boat
       .create(boat)

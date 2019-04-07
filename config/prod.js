@@ -13,5 +13,7 @@ module.exports = {
   cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
   cloudinarySecret: process.env.CLOUDINARY_SECRET,
   cloudinaryEnvVariable: process.env.CLOUDINARY_ENV_VARIABLE,
+  cloudinarySecret: process.env.CLOUDINARY_UPLOAD_PRESET,
+  cloudinaryEnvVariable: process.env.CLOUDINARY_UPLOAD_URL,
   sessionSecret: process.env.SESSION_SECRET
 };

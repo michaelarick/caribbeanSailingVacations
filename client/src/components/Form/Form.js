@@ -1,4 +1,5 @@
 import React from "react";
+import ImageUploader from '../ImageUploader'
 
 const Form = props => (
   <form>
@@ -17,30 +18,64 @@ const Form = props => (
         required
       />
       <label htmlFor="description">
-        <strong>Description of Boat</strong>
+        <strong>Crew Bio</strong>
       </label>
       <input
         className="form-control"
-        id="description"
+        id="crewBio"
+        type="textArea"
+        value={props.crewBio}
+        placeholder="about the crew.."
+        name="crewBio"
+        onChange={props.handleInputChange}
+        required
+      />
+      <label htmlFor="maxPassengers">
+        <strong>Passenger Capacity</strong>
+      </label>
+      <input
+        className="form-control"
+        id="maxPassengers"
+        type="number"
+        value={props.maxPassengers}
+        placeholder="4-30"
+        name="maxPassengers"
+        onChange={props.handleInputChange}
+        required
+      />
+      <label htmlFor="year">
+        <strong>Year made</strong>
+      </label>
+      <input
+        className="form-control"
+        id="year"
+        type="number"
+        value={props.year}
+        placeholder="2009"
+        name="year"
+        onChange={props.handleInputChange}
+        required
+      />
+      <label htmlFor="manufacture">
+        <strong>Manufacturer of Boat</strong>
+      </label>
+      <input
+        className="form-control"
+        id="manufacture"
         type="text"
-        value={props.description}
+        value={props.manufacture}
         placeholder="Boat size etc..."
-        name="description"
+        name="manufacture"
         onChange={props.handleInputChange}
         required
       />
       <label htmlFor="image-url">
-        <strong>Image URL</strong>
+        <strong>Boat Images</strong>
       </label>
-      <input
-        className="form-control"
-        id="image-url"
-        type="text"
-        value={props.img}
-        placeholder="yourimage.png"
-        name="img"
+      <ImageUploader
+        imgs={props.imgs}
         onChange={props.handleInputChange}
-        required
+        setUrls={props.handleSetUrls}
       />
     </div>
     <div className="pull-right">
