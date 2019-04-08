@@ -1,14 +1,9 @@
 import axios from "axios";
-import filterParams from "./filterParams";
 
 export default {
   // Gets boats from the NYT API
-  getBoats: function(params) {
-    try {
+  getBoats: function() {
       return axios.get("/api/boats");
-    } catch (err) {
-      console.log('err (╯°□°)╯︵ ┻━┻ ', err)
-    }
   },
   // Deletes the saved article with the given id
   deleteBoat: function(id) {

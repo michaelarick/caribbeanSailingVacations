@@ -1,3 +1,4 @@
 module.exports = {
-  Boat: require("./boat")
+  Boat: require("./boat"),
+  User: require("./user")
 };
