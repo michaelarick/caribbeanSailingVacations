@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import React from "react";
 import { Link } from "react-router-dom";
-import Home from "../../pages/Home";
+import NavStyles from "../styles/NavStyles";
 
 const StyledHeader = styled.header`
   .bar {
-    border-bottom: 10px solid ${props => props.theme.black};
+    border-bottom: 10px solid ${props => props.theme.offWhite};
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
@@ -18,19 +18,19 @@ const StyledHeader = styled.header`
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid ${props => props.theme.lightgrey};
+    border-bottom: 1px solid ${props => props.theme.offWhite};
   }
 `;
 
 const Logo = styled.h1`
-  font-size: 4rem;
+  font-size: 2.5rem;
   margin-left: 2rem;
   position: relative;
   z-index: 2;
   transform: skew(-7deg);
   a {
     padding: 0.5rem 1rem;
-    background: ${props => props.theme.red};
+    background: ${props => props.theme.turquoise};
     color: white;
     text-transform: uppercase;
     text-decoration: none;
@@ -45,10 +45,13 @@ const Header = () => (
   <StyledHeader>
     <div className="bar">
       <Logo>
-        <Link href="/" component={Home}>
-          Caribbean Sailing Vacations
-        </Link>
+        <Link to="/">Caribbean Sailing Vacations</Link>
       </Logo>
+      <NavStyles>
+        <Link exact to="/boats">
+          Our Boats
+        </Link>
+      </NavStyles>
     </div>
     <div className="sub-bar" />
   </StyledHeader>

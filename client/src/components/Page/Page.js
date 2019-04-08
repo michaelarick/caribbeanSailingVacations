@@ -9,12 +9,13 @@ const theme = {
   grey: "#3A3A3A",
   lightgrey: "#E1E1E1",
   offWhite: "#EDEDED",
+  turquoise: "#2DECB1",
   maxWidth: "1000px",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
 };
 
 const StyledPage = styled.div`
-  background: white;
+  background: ${props => props.theme.offwhite};
   color: ${props => props.theme.black};
 `;
 
@@ -44,6 +45,7 @@ injectGlobal`
     font-size: 1.5rem;
     line-height: 2;
     font-family: 'radnika_next';
+    background-color: whitesmoke;
   }
   a {
     text-decoration: none;
