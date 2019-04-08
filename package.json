@@ -8,13 +8,14 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "install": "cd client && npm install;",
+    "install": "cd client && yarn install;",
     "build": "cd client && yarn build",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
     "node": "^11.x",
-    "npm": "^6.x"
+    "npm": "^6.x",
+    "yarn": "1.x"
   },
   "author": "",
   "license": "ISC",
