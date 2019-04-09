@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import '../App.css'
-import Form from '../components/Form'
+import React, { Component } from "react";
+import "../App.css";
+import Form from "../components/Form";
 import API from "../utils/API";
 
 class AddBoat extends Component {
@@ -15,16 +15,14 @@ class AddBoat extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log('event.target (╯°□°)╯︵ ┻━┻ ', event.target)
     try {
-      this.saveBoats()
+      this.saveBoats();
     } catch (err) {
-      console.log('error in save boats (╯°□°)╯︵ ┻━┻ ', err)
-    };
+      console.log("error in save boats (╯°□°)╯︵ ┻━┻ ", err);
+    }
   };
 
   saveBoats = () => {
-    console.log('this.state (╯°□°)╯︵ ┻━┻ ', this.state)
     API.saveBoat({
       boatName: this.state.boatName,
       imgs: this.state.imgUrls,
@@ -41,7 +39,7 @@ class AddBoat extends Component {
             : ""
         })
       )
-      .catch(err => console.log('saving boat error', err));
+      .catch(err => console.log("saving boat error", err));
   };
 
   handleInputChange = event => {
