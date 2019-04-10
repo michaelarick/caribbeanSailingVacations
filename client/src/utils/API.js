@@ -14,7 +14,7 @@ export default {
     return axios.post("/api/boats", boatData);
   },
   // finds an existing user and logs them in
-  userSignin: function(userData) {
+  userSignIn: function(userData) {
     return axios.post("/api/signin", userData);
   },
   // creates a new user

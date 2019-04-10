@@ -6,28 +6,8 @@ import AddBoat from "./pages/AddBoat";
 import AllBoats from "./pages/AllBoats";
 import Home from "./pages/Home";
 import Page from "./components/Page";
-
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
-  },
-
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
-};
-
-const Public = () => <h3>Public</h3>;
-const Protected = () => <h3>Protected</h3>;
-
-class Login extends Component {
-  render() {
-    return <div>LOGIN</div>;
-  }
-}
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 class App extends Component {
   render() {
@@ -37,6 +17,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/add-boat" component={AddBoat} />
             <Route exact path="/boats" component={AllBoats} />
+            <Route exact path="/sign-in" component={SignIn} />
+            <Route exact path="/sign-up" component={SignUp} />
             <Route path="/" component={Home} />
           </Switch>
         </Page>
