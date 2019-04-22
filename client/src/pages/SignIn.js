@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-import { browserHistory, Link } from "react-router-dom";
-import Form from "../components/Form";
+import { Redirect } from "react-router-dom";
+import SignInForm from "../components/SignInForm";
 import API from "../utils/API";
 
 class SignIn extends Component {
   state = {
-    userName: "",
+    email: "",
     password: ""
   };
-  handleSignIn = event => {
+
+  handleSignIn = async event => {
     event.preventDefault();
-    try {
-      API.userSignIn();
-    } catch (err) {
-      console.log("err (╯°□°)╯︵ ┻━┻ ", err);
-    }
+    const { email, password } = this.state;
+    const validatedUser = await API.userSignIn({ email, password });
+    return <Redirect to="/boats" state={validatedUser} />;
   };
 
   handleInputChange = event => {
@@ -27,10 +26,10 @@ class SignIn extends Component {
   render() {
     return (
       <>
-        <Form
+        <SignInForm
           handleInputChange={this.handleInputChange}
-          onSubmit={this.handleSignIn}
-          userName={this.state.userName}
+          handleSignIn={this.handleSignIn}
+          email={this.state.email}
           password={this.state.password}
         />
       </>

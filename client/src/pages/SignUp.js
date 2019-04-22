@@ -1,21 +1,30 @@
 import React, { Component } from "react";
-import { browserHistory, Link } from "react-router-dom";
-import Form from "../components/Form";
+import SignUpForm from "../components/SignUpForm";
 import API from "../utils/API";
 
 class SignIn extends Component {
   state = {
-    userName: "",
-    password: ""
+    email: "",
+    password: "",
+    isAdmin: false
   };
+
   handleSignUp = event => {
     event.preventDefault();
-    console.log("event (╯°□°)╯︵ ┻━┻ ", event);
+    console.log("event (╯°□°)╯︵ ┻━┻ ", event.data);
     try {
-      API.userSignUp(event);
+      this.saveUser();
     } catch (error) {
       console.log("error (╯°□°)╯︵ ┻━┻ ", error.message);
     }
+  };
+
+  saveUser = () => {
+    API.userCreate({
+      email: this.state.email,
+      password: this.state.password,
+      isAdmin: false
+    });
   };
 
   handleInputChange = event => {
@@ -28,10 +37,10 @@ class SignIn extends Component {
   render() {
     return (
       <>
-        <Form
+        <SignUpForm
           handleInputChange={this.handleInputChange}
-          onSubmit={this.handleSignUp}
-          userName={this.state.userName}
+          handleSignUp={this.handleSignUp}
+          userName={this.state.email}
           password={this.state.password}
         />
       </>

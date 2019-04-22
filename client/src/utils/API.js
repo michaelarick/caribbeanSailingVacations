@@ -1,9 +1,15 @@
 import axios from "axios";
+import ls from "local-storage";
 
 export default {
   // Gets boats from the Node server API
-  getBoats: function() {
-    return axios.get("/api/boats");
+  getBoats: async function() {
+    try {
+      const boats = await axios.get("/api/boats");
+      return boats;
+    } catch (error) {
+      console.log("error in get boats (╯°□°)╯︵ ┻━┻ ", error);
+    }
   },
   // Deletes the saved boat with the given id
   deleteBoat: function(id) {
@@ -14,11 +20,24 @@ export default {
     return axios.post("/api/boats", boatData);
   },
   // finds an existing user and logs them in
-  userSignIn: function(userData) {
-    return axios.post("/api/signin", userData);
+  userSignIn: async function(userData) {
+    try {
+      const user = await axios.post("/api/users/signin", userData);
+      if (user) {
+        ls.set("user-token", user.data.token);
+        return user;
+      }
+    } catch (error) {
+      console.log("user login error (╯°□°)╯︵ ┻━┻ ", error);
+    }
   },
   // creates a new user
-  userCreate: function(userData) {
-    return axios.post("/api/signup", userData);
+  userCreate: async function(userData) {
+    try {
+      const newUser = await axios.post("/api/users/signup", userData);
+      return newUser;
+    } catch (error) {
+      console.log("userCreate error (╯°□°)╯︵ ┻━┻ ", error);
+    }
   }
 };

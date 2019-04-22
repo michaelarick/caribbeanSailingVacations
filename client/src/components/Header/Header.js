@@ -41,20 +41,34 @@ const Logo = styled.h1`
   }
 `;
 
-const Header = () => (
-  <StyledHeader>
-    <div className="bar">
-      <Logo>
-        <Link to="/">Caribbean Sailing Vacations</Link>
-      </Logo>
-      <NavStyles>
-        <Link exact to="/boats">
-          Our Boats
-        </Link>
-      </NavStyles>
-    </div>
-    <div className="sub-bar" />
-  </StyledHeader>
-);
+const Header = props => {
+  return props.loggedIn ? (
+    <StyledHeader>
+      <div className="bar">
+        <Logo>
+          <Link to="/">Caribbean Sailing Vacations</Link>
+        </Logo>
+        <NavStyles>
+          <Link to="/boats">Our Boats</Link>
+        </NavStyles>
+      </div>
+      <div className="sub-bar" />
+    </StyledHeader>
+  ) : (
+    <StyledHeader>
+      <div className="bar">
+        <Logo>
+          <Link to="/">Caribbean Sailing Vacations</Link>
+        </Logo>
+        <NavStyles>
+          <Link to="/boats">Our Boats</Link>
+          <Link to="/sign-in">Log In</Link>
+          <Link to="/sign-up">Register</Link>
+        </NavStyles>
+      </div>
+      <div className="sub-bar" />
+    </StyledHeader>
+  );
+};
 
 export default Header;

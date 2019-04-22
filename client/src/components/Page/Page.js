@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled, { ThemeProvider, injectGlobal } from "styled-components";
 import Header from "../Header";
 import Meta from "../Meta";
+import ls from "local-storage";
 
 const theme = {
   red: "#FF0000",
@@ -55,12 +56,30 @@ injectGlobal`
 `;
 
 class Page extends Component {
+  state = {
+    userToken: false
+  };
+
+  componentDidMount() {
+    let loggedIn = ls.get("user-token") || false;
+
+    return loggedIn
+      ? this.setState({
+          userToken: true
+        })
+      : false;
+  }
+
+  displayAuthOptions = () => {
+    return this.state.userToken ? true : false;
+  };
+
   render() {
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Header />
+          <Header loggedIn={this.state.userToken} />
           <Inner>{this.props.children}</Inner>
         </StyledPage>
       </ThemeProvider>

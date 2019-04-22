@@ -8,7 +8,22 @@ function tokenForUser(user) {
 }
 
 exports.signin = function(req, res, next) {
-  res.send({ token: tokenForUser(req.user) });
+  const { email, password } = req.body;
+  User.findOne({ email }, "email password")
+    .then(user => {
+      if (!user) {
+        return res.status(401).send({ message: "Wrong Username or password" });
+      }
+      user.comparePassword(password, (err, isMatch) => {
+        if (!isMatch) {
+          return res
+            .status(401)
+            .send({ message: "Wrong Username or password" });
+        }
+        res.send({ token: tokenForUser(req.body.email) });
+      });
+    })
+    .catch(err => console.log(err));
 };
 
 exports.signup = function(req, res, next) {
@@ -31,7 +46,8 @@ exports.signup = function(req, res, next) {
 
     const user = new User({
       email: email,
-      password: password
+      password: password,
+      isAdmin: false
     });
 
     user.save(function(err) {
