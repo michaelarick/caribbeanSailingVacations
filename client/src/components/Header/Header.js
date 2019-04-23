@@ -41,34 +41,37 @@ const Logo = styled.h1`
   }
 `;
 
-const Header = props => {
-  return props.loggedIn ? (
-    <StyledHeader>
-      <div className="bar">
-        <Logo>
-          <Link to="/">Caribbean Sailing Vacations</Link>
-        </Logo>
-        <NavStyles>
-          <Link to="/boats">Our Boats</Link>
-        </NavStyles>
-      </div>
-      <div className="sub-bar" />
-    </StyledHeader>
-  ) : (
-    <StyledHeader>
-      <div className="bar">
-        <Logo>
-          <Link to="/">Caribbean Sailing Vacations</Link>
-        </Logo>
-        <NavStyles>
-          <Link to="/boats">Our Boats</Link>
-          <Link to="/sign-in">Log In</Link>
-          <Link to="/sign-up">Register</Link>
-        </NavStyles>
-      </div>
-      <div className="sub-bar" />
-    </StyledHeader>
-  );
-};
+class Header extends React.Component {
+  render() {
+    return this.props.display() ? (
+      <StyledHeader>
+        <div className="bar">
+          <Logo>
+            <Link to="/">Caribbean Sailing Vacations</Link>
+          </Logo>
+          <NavStyles>
+            <Link to="/boats">Our Boats</Link>
+            <Link to="/sign-out">Sign Out</Link>
+          </NavStyles>
+        </div>
+        <div className="sub-bar" />
+      </StyledHeader>
+    ) : (
+      <StyledHeader>
+        <div className="bar">
+          <Logo>
+            <Link to="/">Caribbean Sailing Vacations</Link>
+          </Logo>
+          <NavStyles>
+            <Link to="/boats">Our Boats</Link>
+            <Link to="/sign-in">Log In</Link>
+            <Link to="/sign-up">Register</Link>
+          </NavStyles>
+        </div>
+        <div className="sub-bar" />
+      </StyledHeader>
+    );
+  }
+}
 
 export default Header;

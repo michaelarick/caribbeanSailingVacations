@@ -103,7 +103,6 @@ class AllBoats extends Component {
   getBoats = () => {
     API.getBoats().then(response => {
       if (response) {
-        console.log("response error (╯°□°)╯︵ ┻━┻ ", response);
         this.setState({ boats: response.data });
       } else {
         console.log("response error (╯°□°)╯︵ ┻━┻ ", response);

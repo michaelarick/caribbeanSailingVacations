@@ -2,18 +2,20 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import SignInForm from "../components/SignInForm";
 import API from "../utils/API";
+import ls from "local-storage";
 
 class SignIn extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    validatedUser: ""
   };
 
   handleSignIn = async event => {
     event.preventDefault();
     const { email, password } = this.state;
     const validatedUser = await API.userSignIn({ email, password });
-    return <Redirect to="/boats" state={validatedUser} />;
+    this.setState({ validatedUser });
   };
 
   handleInputChange = event => {
@@ -24,7 +26,9 @@ class SignIn extends Component {
   };
 
   render() {
-    return (
+    return this.state.validatedUser !== "" || ls.get("user-token") ? (
+      <Redirect to={{ pathname: "/boats" }} />
+    ) : (
       <>
         <SignInForm
           handleInputChange={this.handleInputChange}

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import styled, { ThemeProvider, injectGlobal } from "styled-components";
+import ls from "local-storage";
+import { withRouter } from "react-router-dom";
+
 import Header from "../Header";
 import Meta from "../Meta";
-import ls from "local-storage";
 
 const theme = {
   red: "#FF0000",
@@ -67,19 +69,37 @@ class Page extends Component {
       ? this.setState({
           userToken: true
         })
-      : false;
+      : this.setState({ userToken: false });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    let token = ls.get("user-token") || false;
+    if (!prevState.userToken) {
+      if (token) {
+        this.handleUserExistance();
+      }
+    } else if (prevState.userToken) {
+      if (!token) {
+        this.setState({ userToken: false });
+      }
+    }
   }
 
   displayAuthOptions = () => {
     return this.state.userToken ? true : false;
   };
 
+  handleUserExistance = async () => {
+    return await this.setState({ userToken: true });
+  };
+
   render() {
+    let token = ls.get("user-token");
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Header loggedIn={this.state.userToken} />
+          <Header display={this.displayAuthOptions} loggedIn={token} />
           <Inner>{this.props.children}</Inner>
         </StyledPage>
       </ThemeProvider>
@@ -87,4 +107,4 @@ class Page extends Component {
   }
 }
 
-export default Page;
+export default withRouter(Page);

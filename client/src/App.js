@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Page from "./components/Page";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import SignOut from "./pages/SignOut";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route exact path="/boats" component={AllBoats} />
             <Route exact path="/sign-in" component={SignIn} />
             <Route exact path="/sign-up" component={SignUp} />
+            <Route exact path="/sign-out" component={SignOut} />
             <Route path="/" component={Home} />
           </Switch>
         </Page>

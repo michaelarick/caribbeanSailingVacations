@@ -31,6 +31,10 @@ export default {
       console.log("user login error (╯°□°)╯︵ ┻━┻ ", error);
     }
   },
+  userSignOut: async function() {
+    ls.clear("user-token");
+    return;
+  },
   // creates a new user
   userCreate: async function(userData) {
     try {
