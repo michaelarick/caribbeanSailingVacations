@@ -9,8 +9,9 @@ function tokenForUser(user) {
 
 exports.signin = function(req, res, next) {
   const { email, password } = req.body;
-  User.findOne({ email }, "email password")
+  User.findOne({ email }, "email password isAdmin")
     .then(user => {
+      console.log("user in auth api (╯°□°)╯︵ ┻━┻ ", user);
       if (!user) {
         return res.status(401).send({ message: "Wrong Username or password" });
       }
@@ -20,7 +21,11 @@ exports.signin = function(req, res, next) {
             .status(401)
             .send({ message: "Wrong Username or password" });
         }
-        res.send({ token: tokenForUser(req.body.email) });
+        console.log("user (╯°□°)╯︵ ┻━┻ ", user);
+        res.send({
+          token: tokenForUser(req.body.email),
+          adminMode: user.isAdmin
+        });
       });
     })
     .catch(err => console.log(err));

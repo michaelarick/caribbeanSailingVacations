@@ -8,14 +8,16 @@ class SignIn extends Component {
   state = {
     email: "",
     password: "",
-    validatedUser: ""
+    validatedUser: "",
+    admin: false
   };
 
   handleSignIn = async event => {
     event.preventDefault();
     const { email, password } = this.state;
     const validatedUser = await API.userSignIn({ email, password });
-    this.setState({ validatedUser });
+    this.setState({ validatedUser, admin: validatedUser.data.adminMode });
+    console.log("validatedUser (╯°□°)╯︵ ┻━┻ ", validatedUser);
   };
 
   handleInputChange = event => {
@@ -30,6 +32,7 @@ class SignIn extends Component {
       <Redirect to={{ pathname: "/boats" }} />
     ) : (
       <>
+        <h1>Sign In</h1>
         <SignInForm
           handleInputChange={this.handleInputChange}
           handleSignIn={this.handleSignIn}

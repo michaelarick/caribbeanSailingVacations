@@ -25,6 +25,9 @@ export default {
       const user = await axios.post("/api/users/signin", userData);
       if (user) {
         ls.set("user-token", user.data.token);
+        if (user.data.adminMode) {
+          ls.set("admin", user.data.adminMode);
+        }
         return user;
       }
     } catch (error) {

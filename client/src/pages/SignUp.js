@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SignUpForm from "../components/SignUpForm";
+import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 
 class SignIn extends Component {
@@ -9,11 +10,14 @@ class SignIn extends Component {
     isAdmin: false
   };
 
-  handleSignUp = event => {
+  handleSignUp = async event => {
     event.preventDefault();
     console.log("event (╯°□°)╯︵ ┻━┻ ", event.data);
     try {
-      this.saveUser();
+      let newUser = await this.saveUser();
+      if (newUser) {
+        return <Redirect to="/sign-in" />;
+      }
     } catch (error) {
       console.log("error (╯°□°)╯︵ ┻━┻ ", error.message);
     }
@@ -37,6 +41,7 @@ class SignIn extends Component {
   render() {
     return (
       <>
+        <h1>Register With Your Email Address And Get Sailing!</h1>
         <SignUpForm
           handleInputChange={this.handleInputChange}
           handleSignUp={this.handleSignUp}
