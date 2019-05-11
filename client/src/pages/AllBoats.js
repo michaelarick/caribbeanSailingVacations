@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Slide from "react-reveal/Slide";
 import Carousel from "../components/Carousel";
-import Zoom from "react-reveal/Zoom";
+import Fade from "react-reveal/Fade";
 
 const BoatContainer = styled.div`
   display: grid;
@@ -69,19 +69,21 @@ class AllBoats extends Component {
   showBoats = () => {
     return this.state.boats.map((boat, i) => {
       return (
-        <BoatContainer key={boat._id}>
-          <BoatInfo key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatInfo>
-          <BoatInfo key={`${boat._id}${i + 2}`}>{boat.manufacture}</BoatInfo>
-          <BoatInfo key={`${boat._id}${i + 3}`}>{boat.year}</BoatInfo>
-          <Link
-            params={{ id: boat._id }}
-            key={`${boat._id}${i + 5}`}
-            to={`/boat/${boat._id}`}
-          >
-            {"Learn More!"}
-          </Link>
-          <Carousel>{this.renderImages(boat.imgs)}</Carousel>
-        </BoatContainer>
+        <Fade bottom cascade>
+          <BoatContainer key={boat._id}>
+            <BoatInfo key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatInfo>
+            <BoatInfo key={`${boat._id}${i + 2}`}>{boat.manufacture}</BoatInfo>
+            <BoatInfo key={`${boat._id}${i + 3}`}>{boat.year}</BoatInfo>
+            <Link
+              params={{ id: boat._id }}
+              key={`${boat._id}${i + 5}`}
+              to={`/boat/${boat._id}`}
+            >
+              {"Learn More!"}
+            </Link>
+            <Carousel>{this.renderImages(boat.imgs)}</Carousel>
+          </BoatContainer>
+        </Fade>
       );
     });
   };

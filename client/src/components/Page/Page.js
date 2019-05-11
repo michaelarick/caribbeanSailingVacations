@@ -97,7 +97,7 @@ class Page extends Component {
         margin: 0 auto;
         padding: 2rem;
       `,
-      <Fade bottom opposite />
+      <Fade bottom opposite when={this.state.mounted} />
     );
     return (
       <ThemeProvider theme={theme}>
