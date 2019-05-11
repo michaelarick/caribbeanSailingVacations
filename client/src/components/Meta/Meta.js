@@ -6,7 +6,7 @@ const Meta = () => (
     <meta charSet="utf-8" />
     <meta name="language" content="English" />
     <meta
-      name="description"
+      name="Description"
       content="Book Caribbean Sailing Vacations here today"
     />
     <link rel="shortcut icon" href="/static/favicon.png" />

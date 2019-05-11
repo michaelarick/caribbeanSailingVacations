@@ -5,11 +5,13 @@ import NavStyles from "../styles/NavStyles";
 
 const StyledHeader = styled.header`
   .bar {
-    border-bottom: 10px solid ${props => props.theme.offWhite};
+    border-bottom: 10px solid ${props => props.theme.transparentGrey};
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
     align-items: stretch;
+    background-color: rgba(200, 200, 200, 0.4);
+
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
       justify-content: center;
@@ -18,7 +20,7 @@ const StyledHeader = styled.header`
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid ${props => props.theme.offWhite};
+    border-bottom: 1px solid ${props => props.theme.transparentGrey};
   }
 `;
 
@@ -30,8 +32,7 @@ const Logo = styled.h1`
   transform: skew(-7deg);
   a {
     padding: 0.5rem 1rem;
-    background: ${props => props.theme.turquoise};
-    color: white;
+    color: ${props => props.theme.turquoise};
     text-transform: uppercase;
     text-decoration: none;
   }
@@ -63,7 +64,9 @@ class Header extends React.Component {
             <Link to="/">Caribbean Sailing Vacations</Link>
           </Logo>
           <NavStyles>
-            <Link to="/boats">Our Boats</Link>
+            <Link to="/boats">Our Fleet</Link>
+            <Link to="/boats">Giving Back</Link>
+            <Link to="/boats">About us</Link>
             <Link to="/sign-in">Log In</Link>
             <Link to="/sign-up">Register</Link>
           </NavStyles>

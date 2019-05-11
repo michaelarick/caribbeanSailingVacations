@@ -11,6 +11,14 @@ export default {
       console.log("error in get boats (╯°□°)╯︵ ┻━┻ ", error);
     }
   },
+  getBoat: async function(id) {
+    try {
+      const boat = await axios.get("/api/boats/" + id);
+      return boat;
+    } catch (error) {
+      console.log("error in get boats (╯°□°)╯︵ ┻━┻ ", error);
+    }
+  },
   // Deletes the saved boat with the given id
   deleteBoat: function(id) {
     return axios.delete("/api/boats/" + id);

@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import SignUpForm from "../components/SignUpForm";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
+import _ from "lodash";
+import validateEmails from "../utils/validateEmails";
 
-class SignIn extends Component {
+class SignUp extends Component {
   state = {
     email: "",
     password: "",
@@ -31,6 +33,20 @@ class SignIn extends Component {
     });
   };
 
+  validate(value) {
+    const errors = {};
+
+    errors.recipients = validateEmails(value.recipients || "");
+
+    _.each(value, ({ name }) => {
+      if (!value[name]) {
+        errors[name] = "Value is required";
+      }
+    });
+
+    return errors;
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -53,4 +69,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default SignUp;

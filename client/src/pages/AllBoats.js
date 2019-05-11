@@ -1,91 +1,37 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import makeCarousel from "react-reveal/makeCarousel";
-import Slide from "react-reveal/Slide";
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+import Slide from "react-reveal/Slide";
+import Carousel from "../components/Carousel";
+import Zoom from "react-reveal/Zoom";
 
-const width = "100rem",
-  height = "150rem";
-const Container = styled.div`
-  border: 1px solid red;
-  position: relative;
-  overflow: hidden;
-  width: ${width};
-  height: ${height};
-`;
 const BoatContainer = styled.div`
   display: grid;
   overflow: hidden;
-  border: 1px solid red;
-  grid-template-columns: 50rem 50rem;
-  grid-gap: 1rem;
+  border: 1px solid blue;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-gap: 2rem;
   position: relative;
-  width: 75rem;
-  height: 70rem;
+  width: 100%;
+  transition: all 1s ease-out;
+  height: 40rem;
+  background-color: rgba(200, 200, 200, 0.6);
 `;
 const BoatInfo = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
 `;
-const Children = styled.div`
-  width: ${width};
-  position: relative;
-  height: ${height};
+const BoatsDisplay = styled.div`
+  display: grid;
+  grid-template: 50% 50% / 50% 50%;
+  grid-gap: 3rem;
+  background: ${props => props.theme.transparentGrey};
+  @media (max-width: 800px) {
+    grid-template: 50% 50% / 100%;
+  }
 `;
-const Arrow = styled.div`
-  text-shadow: 1px 1px 1px #fff;
-  z-index: 100;
-  line-height: ${height};
-  text-align: center;
-  position: absolute;
-  top: 0;
-  width: 10%;
-  font-size: 3em;
-  cursor: pointer;
-  user-select: none;
-  ${props =>
-    props.right
-      ? css`
-          left: 90%;
-        `
-      : css`
-          left: 0%;
-        `}
-`;
-const Dot = styled.span`
-  font-size: 1.5em;
-  cursor: pointer;
-  text-shadow: 1px 1px 1px #fff;
-  user-select: none;
-`;
-const Dots = styled.span`
-  text-align: center;
-  width: ${width};
-  z-index: 100;
-`;
-
-const CarouselUI = ({ position, total, handleClick, children }) => (
-  <Container>
-    <Children>
-      {children}
-      <Arrow onClick={handleClick} data-position={position - 1}>
-        {"<"}
-      </Arrow>
-      <Arrow right onClick={handleClick} data-position={position + 1}>
-        {">"}
-      </Arrow>
-    </Children>
-    <Dots>
-      {Array(...Array(total)).map((val, index) => (
-        <Dot key={index} onClick={handleClick} data-position={index}>
-          {index === position ? "● " : "○ "}
-        </Dot>
-      ))}
-    </Dots>
-  </Container>
-);
-const Carousel = makeCarousel(CarouselUI);
 
 class AllBoats extends Component {
   state = {
@@ -127,7 +73,13 @@ class AllBoats extends Component {
           <BoatInfo key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatInfo>
           <BoatInfo key={`${boat._id}${i + 2}`}>{boat.manufacture}</BoatInfo>
           <BoatInfo key={`${boat._id}${i + 3}`}>{boat.year}</BoatInfo>
-          <BoatInfo key={`${boat._id}${i + 4}`}>{boat.crewBio}</BoatInfo>
+          <Link
+            params={{ id: boat._id }}
+            key={`${boat._id}${i + 5}`}
+            to={`/boat/${boat._id}`}
+          >
+            {"Learn More!"}
+          </Link>
           <Carousel>{this.renderImages(boat.imgs)}</Carousel>
         </BoatContainer>
       );
@@ -135,7 +87,7 @@ class AllBoats extends Component {
   };
 
   render() {
-    return <div>{this.showBoats()}</div>;
+    return <BoatsDisplay>{this.showBoats()}</BoatsDisplay>;
   }
 }
 
