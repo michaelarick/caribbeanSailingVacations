@@ -6,7 +6,6 @@ const width = "150rem",
   height = "150rem";
 
 const Container = styled.div`
-  border: 1px solid red;
   position: relative;
   overflow: hidden;
   width: ${width};

@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div
       className="center-align"
-      style={{ marginTop: "200px", textAlign: "center", fontSize: "3rem" }}
+      style={{ marginTop: "10rem", textAlign: "center", fontSize: "3rem" }}
     >
       <Fade bottom cascade>
         <h1>Boutique Sailing Adventures</h1>

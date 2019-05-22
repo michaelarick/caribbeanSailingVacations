@@ -1,7 +1,8 @@
-import styled from "styled-components";
 import React from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
-import NavStyles from "../styles/NavStyles";
+
+const NavStyles = React.lazy(() => import("../styles/NavStyles"));
 
 const StyledHeader = styled.header`
   .bar {
@@ -51,7 +52,9 @@ class Header extends React.Component {
             <Link to="/">Caribbean Sailing Vacations</Link>
           </Logo>
           <NavStyles>
-            <Link to="/boats">Our Boats</Link>
+            <Link to="/boats">Our Fleet</Link>
+            <Link to="/boats">Giving Back</Link>
+            <Link to="/boats">About us</Link>
             <Link to="/sign-out">Sign Out</Link>
           </NavStyles>
         </div>

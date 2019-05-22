@@ -4,8 +4,8 @@ import ls from "local-storage";
 import { withRouter } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import withReveal from "react-reveal/withReveal";
-import Header from "../Header";
-import Meta from "../Meta";
+const Header = React.lazy(() => import("../Header"));
+const Meta = React.lazy(() => import("../Meta"));
 
 const theme = {
   red: "#FF0000",
@@ -22,6 +22,7 @@ const theme = {
 const StyledPage = styled.div`
   background: ${props => props.theme.transparentGrey};
   color: ${props => props.theme.offWhite};
+  height: 100%;
 `;
 
 injectGlobal`

@@ -4,12 +4,12 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Slide from "react-reveal/Slide";
 import Carousel from "../components/Carousel";
-import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
 
 const BoatContainer = styled.div`
   display: grid;
   overflow: hidden;
-  border: 1px solid blue;
+  border: 1px solid ${props => props.theme.transparentGrey};
   grid-template-columns: 25% 25% 25% 25%;
   grid-gap: 2rem;
   position: relative;
@@ -69,7 +69,7 @@ class AllBoats extends Component {
   showBoats = () => {
     return this.state.boats.map((boat, i) => {
       return (
-        <Fade bottom cascade>
+        <Zoom bottom>
           <BoatContainer key={boat._id}>
             <BoatInfo key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatInfo>
             <BoatInfo key={`${boat._id}${i + 2}`}>{boat.manufacture}</BoatInfo>
@@ -81,9 +81,11 @@ class AllBoats extends Component {
             >
               {"Learn More!"}
             </Link>
-            <Carousel>{this.renderImages(boat.imgs)}</Carousel>
+            <Carousel key={`${boat._id}${i + 6}`}>
+              {this.renderImages(boat.imgs)}
+            </Carousel>
           </BoatContainer>
-        </Fade>
+        </Zoom>
       );
     });
   };

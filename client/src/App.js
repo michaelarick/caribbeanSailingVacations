@@ -2,11 +2,11 @@ import React, { Component, Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled, { css } from "styled-components";
 
+const Page = React.lazy(() => import("./components/Page"));
 const AddBoat = React.lazy(() => import("./pages/AddBoat"));
 const AllBoats = React.lazy(() => import("./pages/AllBoats"));
 const BoatDetail = React.lazy(() => import("./pages/BoatDetail"));
 const Home = React.lazy(() => import("./pages/Home"));
-const Page = React.lazy(() => import("./components/Page"));
 const SignIn = React.lazy(() => import("./pages/SignIn"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
 const SignOut = React.lazy(() => import("./pages/SignOut"));
@@ -32,7 +32,13 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <Background>
+              <div>Loading...</div>
+            </Background>
+          }
+        >
           <Background>
             <Page>
               <Switch>
