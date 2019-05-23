@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "cloudinary": "^1.14.0",

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slide from "react-reveal/Slide";
 import Carousel from "../components/Carousel";

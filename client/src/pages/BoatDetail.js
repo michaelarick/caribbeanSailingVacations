@@ -18,7 +18,6 @@ class BoatDetail extends Component {
     return this.state.boat ? (
       <div>
         <Fade bottom cascade>
-          <div>{this.state.boat._id}</div>
           <div>{this.state.boat.boatName}</div>
           <div>{this.state.boat.crewBio}</div>
         </Fade>
