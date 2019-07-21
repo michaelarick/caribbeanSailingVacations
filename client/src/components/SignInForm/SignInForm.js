@@ -3,9 +3,6 @@ import React from "react";
 const SignInForm = props => (
   <form>
     <div className="form-group">
-      <label htmlFor="email">
-        <strong>Email</strong>
-      </label>
       <input
         className="form-control"
         id="email"
@@ -16,10 +13,8 @@ const SignInForm = props => (
         onChange={props.handleInputChange}
         required
       />
-      <label htmlFor="password">
-        <strong>Password</strong>
-      </label>
       <input
+        style={{ marginLeft: ".5rem" }}
         className="form-control"
         id="password"
         type="password"

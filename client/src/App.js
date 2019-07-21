@@ -15,7 +15,7 @@ const Background = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url("https://res.cloudinary.com/dui3yyhou/image/upload/c_scale,w_2651/v1557514748/CaribbeanSailingVacations/artem-pochepetsky-127749-unsplash.webp");
+  background-image: url("https://res.cloudinary.com/dui3yyhou/image/upload/v1563737195/DROCK_1.jpg");
   height: 100%;
   width: 100%;
   z-index: -1;

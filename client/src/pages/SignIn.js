@@ -28,11 +28,11 @@ class SignIn extends Component {
   };
 
   render() {
-    return this.state.validatedUser !== "" || ls.get("user-token") ? (
+    return this.state.validatedUser !== "" && ls.get("user-token") ? (
       <Redirect to={{ pathname: "/boats" }} />
     ) : (
       <>
-        <h1>Sign In</h1>
+        <h4>Sign In</h4>
         <SignInForm
           handleInputChange={this.handleInputChange}
           handleSignIn={this.handleSignIn}

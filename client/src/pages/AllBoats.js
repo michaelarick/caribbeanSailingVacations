@@ -60,7 +60,11 @@ class AllBoats extends Component {
     return images.map((image, i) => {
       return (
         <Slide key={i} right>
-          <img src={image} alt="" />
+          <img
+            style={{ maxWidth: "100%", maxHeight: "100%" }}
+            src={image}
+            alt=""
+          />
         </Slide>
       );
     });

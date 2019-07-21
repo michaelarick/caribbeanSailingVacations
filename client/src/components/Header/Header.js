@@ -49,12 +49,9 @@ class Header extends React.Component {
       <StyledHeader>
         <div className="bar">
           <Logo>
-            <Link to="/">Caribbean Sailing Vacations</Link>
+            <Link to="/">Charter Assistant</Link>
           </Logo>
           <NavStyles>
-            <Link to="/boats">Our Fleet</Link>
-            <Link to="/boats">Giving Back</Link>
-            <Link to="/boats">About us</Link>
             <Link to="/sign-out">Sign Out</Link>
           </NavStyles>
         </div>
@@ -64,13 +61,9 @@ class Header extends React.Component {
       <StyledHeader>
         <div className="bar">
           <Logo>
-            <Link to="/">Caribbean Sailing Vacations</Link>
+            <Link to="/">Charter Assistant</Link>
           </Logo>
           <NavStyles>
-            <Link to="/boats">Our Fleet</Link>
-            <Link to="/boats">Giving Back</Link>
-            <Link to="/boats">About us</Link>
-            <Link to="/sign-in">Log In</Link>
             <Link to="/sign-up">Register</Link>
           </NavStyles>
         </div>
