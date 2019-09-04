@@ -10,6 +10,7 @@ const Home = React.lazy(() => import("./pages/Home"));
 const SignIn = React.lazy(() => import("./pages/SignIn"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
 const SignOut = React.lazy(() => import("./pages/SignOut"));
+const Confirm = React.lazy(() => import("./pages/Confirm"));
 
 const Background = styled.div`
   position: absolute;
@@ -47,6 +48,7 @@ class App extends Component {
                 <Route exact path="/sign-in" component={SignIn} />
                 <Route exact path="/sign-up" component={SignUp} />
                 <Route exact path="/sign-out" component={SignOut} />
+                <Route exact path="/confirm/:id" component={Confirm} />
                 <Route path="/boat/:id" component={BoatDetail} />
                 <Route path="/" component={Home} />
               </Switch>

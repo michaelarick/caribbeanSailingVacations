@@ -28,19 +28,32 @@ class SignIn extends Component {
   };
 
   render() {
-    return this.state.validatedUser !== "" && ls.get("user-token") ? (
-      <Redirect to={{ pathname: "/boats" }} />
-    ) : (
-      <>
-        <h4>Sign In</h4>
-        <SignInForm
-          handleInputChange={this.handleInputChange}
-          handleSignIn={this.handleSignIn}
-          email={this.state.email}
-          password={this.state.password}
-        />
-      </>
-    );
+    if (this.state.validatedUser !== "" && ls.get("user-token")) {
+      return <Redirect to={{ pathname: "/boats" }} />
+    } else {
+      if (this.props.location && this.props.location.state && this.props.location.state.alert) {
+        return <>
+          <div className='alert'>{this.props.location ? this.props.location.state.alert : ''}</div>        
+          <h4>Sign In</h4>
+          <SignInForm
+            handleInputChange={this.handleInputChange}
+            handleSignIn={this.handleSignIn}
+            email={this.state.email}
+            password={this.state.password}
+          />
+        </>
+      } else {
+        return <>
+          <h4>Sign In</h4>
+          <SignInForm
+            handleInputChange={this.handleInputChange}
+            handleSignIn={this.handleSignIn}
+            email={this.state.email}
+            password={this.state.password}
+          />
+        </>
+      }
+    }
   }
 }
 

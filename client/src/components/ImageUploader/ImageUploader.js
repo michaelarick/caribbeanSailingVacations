@@ -51,7 +51,7 @@ class ImageUploader extends Component {
         >
           {({ getRootProps, getInputProps }) => {
             return (
-              <div {...getRootProps()}>
+              <div {...getRootProps()} className='boat-image-dropzone'>
                 <input {...getInputProps()} />
                 {
                   <p>

@@ -9,7 +9,8 @@ class SignUp extends Component {
   state = {
     email: "",
     password: "",
-    isAdmin: false
+    isAdmin: false,
+    done: false
   };
 
   handleSignUp = async event => {
@@ -18,7 +19,7 @@ class SignUp extends Component {
     try {
       let newUser = await this.saveUser();
       if (newUser) {
-        return <Redirect to="/sign-in" />;
+        this.setState({done: true});
       }
     } catch (error) {
       console.log("error (╯°□°)╯︵ ┻━┻ ", error.message);
@@ -26,7 +27,7 @@ class SignUp extends Component {
   };
 
   saveUser = () => {
-    API.userCreate({
+    return API.userCreate({
       email: this.state.email,
       password: this.state.password,
       isAdmin: false
@@ -55,9 +56,16 @@ class SignUp extends Component {
   };
 
   render() {
-    return (
+    return this.state.done === true ? (
+      <Redirect 
+        to={{ 
+          pathname: "/sign-in",
+          state: { alert: "Please check your email account for an email to verify your address." } 
+        }} 
+      />
+    ) : (
       <>
-        <h1>Register With Your Email Address And Get Sailing!</h1>
+        <h1>Register With Your Email Address And Setup Your Own Yacht Charter Site!</h1>
         <SignUpForm
           handleInputChange={this.handleInputChange}
           handleSignUp={this.handleSignUp}

@@ -10,27 +10,53 @@ const BoatContainer = styled.div`
   display: grid;
   overflow: hidden;
   border: 1px solid ${props => props.theme.transparentGrey};
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-gap: 2rem;
   position: relative;
   width: 100%;
   transition: all 1s ease-out;
   height: 40rem;
   background-color: rgba(200, 200, 200, 0.6);
 `;
+const BoatInfoRow = styled.div`
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-gap: 2rem;
+  height: 10rem;
+  position: relative;
+`;
+
+const BoatName = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;  
+`
+
 const BoatInfo = styled.div`
   position: relative;
-  width: 100%;
   height: 100%;
+  width: 100%;
 `;
+
+const BoatPrice = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;  
+`
+
 const BoatsDisplay = styled.div`
   display: grid;
-  grid-template: 50% 50% / 50% 50%;
+  grid-template: 33% 33% 33% / 33% 33% 33%;
   grid-gap: 3rem;
   background: ${props => props.theme.transparentGrey};
   @media (max-width: 800px) {
     grid-template: 50% 50% / 100%;
   }
+`;
+
+const BoatImage = styled.img`
+  max-height: 30rem;
+  object-fit: fill;
 `;
 
 class AllBoats extends Component {
@@ -60,11 +86,7 @@ class AllBoats extends Component {
     return images.map((image, i) => {
       return (
         <Slide key={i} right>
-          <img
-            style={{ maxWidth: "100%", maxHeight: "100%" }}
-            src={image}
-            alt=""
-          />
+          <BoatImage src={image} alt=""></BoatImage>
         </Slide>
       );
     });
@@ -75,19 +97,19 @@ class AllBoats extends Component {
       return (
         <Zoom bottom>
           <BoatContainer key={boat._id}>
-            <BoatInfo key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatInfo>
-            <BoatInfo key={`${boat._id}${i + 2}`}>{boat.manufacture}</BoatInfo>
-            <BoatInfo key={`${boat._id}${i + 3}`}>{boat.year}</BoatInfo>
+            <Carousel key={`${boat._id}${i + 6}`}>
+              {this.renderImages(boat.imgs)}
+            </Carousel>
+            <BoatName key={`${boat._id}${i + 1}`}>{boat.boatName}</BoatName>
+            <BoatPrice>45 min | $20,000</BoatPrice>
             <Link
               params={{ id: boat._id }}
               key={`${boat._id}${i + 5}`}
               to={`/boat/${boat._id}`}
+              className="book-it-link"
             >
-              {"Learn More!"}
+              {"Book It"}
             </Link>
-            <Carousel key={`${boat._id}${i + 6}`}>
-              {this.renderImages(boat.imgs)}
-            </Carousel>
           </BoatContainer>
         </Zoom>
       );
