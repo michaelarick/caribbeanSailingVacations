@@ -2,13 +2,12 @@ import React from "react";
 import makeCarousel from "react-reveal/makeCarousel";
 import styled, { css } from "styled-components";
 
-const width = "150rem",
-  height = "150rem";
+const width = "30rem",
+  height = "30rem";
 
 const Container = styled.div`
   position: relative;
   overflow: hidden;
-  width: ${width};
   height: ${height};
 `;
 const Children = styled.div`

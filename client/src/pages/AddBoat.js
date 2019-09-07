@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Form from "../components/Form";
+import AddBoatForm from "../components/AddBoatForm";
 import API from "../utils/API";
 
 class AddBoat extends Component {
@@ -58,7 +58,7 @@ class AddBoat extends Component {
     return (
       <div className="AddBoat">
         <header className="AddBoat-header">
-          <Form
+          <AddBoatForm
             handleInputChange={this.handleInputChange}
             handleFormSubmit={this.handleFormSubmit}
             handleSetUrls={this.handleSetUrls}

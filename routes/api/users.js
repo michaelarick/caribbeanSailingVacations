@@ -5,4 +5,6 @@ router.route("/signin").post(userController.signin);
 
 router.route("/signup").post(userController.signup);
 
+router.route("/confirmation/:id").get(userController.confirm);
+
 module.exports = router;
